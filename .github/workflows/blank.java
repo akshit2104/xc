@@ -31,3 +31,41 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+import javax.swing.*;
+import java.awt.event.*;
+import java.net.*;
+public class ipFinder extends JFrame implements ActionListener {
+    JLabel l;
+    JTextField tf;
+    JButton b;
+    ipFinder(){
+    super("Ip finder in this section");
+    l=new JLabel("Enter Address/URL");
+    l.setBounds(50,70,150,20);
+    tf= new JTextField();
+    tf.setBounds(50,100,200,20);
+    b= new JButton("Find Your IP");
+    b.setBounds(50,150,100,20);
+    b.addActionListener(this);
+    add(l);
+    add(tf);
+    add(b);
+    setSize(400,400);
+    setLayout(null);
+    setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e){
+    String url= tf.getText();
+    try{
+        InetAddress ia= InetAddress.getByName(url);
+        String ip= ia.getHostAddress();
+        JOptionPane.showMessageDialog(this, ip);
+    }
+    catch(UnknownHostException e1){
+    JOptionPane.showMessageDialog(this, e1.toString());
+    }
+    }
+public static void main(String a[]){
+new ipFinder();
+}
+}
